@@ -6,12 +6,15 @@
 package pruebacombobox;
 
 import java.awt.List;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.InputMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,6 +51,13 @@ public class Formulario extends javax.swing.JFrame {
             comboEmpresa.addItem(empresa);
         }
         
+        comboDoc.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent itemEvent) {
+            Documento documento = (Documento)comboDoc.getSelectedItem(); 
+                System.out.println("documento => " + documento.getId());
+          }
+        });
+        
     }
 
     /**
@@ -65,10 +75,16 @@ public class Formulario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         comboEmpresa = new javax.swing.JComboBox<>();
+        txtPrueba = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         comboDoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboDoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboDocMouseClicked(evt);
+            }
+        });
         comboDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboDocActionPerformed(evt);
@@ -92,6 +108,10 @@ public class Formulario extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addComponent(btnGraba, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(118, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,13 +119,11 @@ public class Formulario extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(comboEmpresa, 0, 241, Short.MAX_VALUE)
-                    .addComponent(comboDoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtPrueba, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(comboEmpresa, 0, 241, Short.MAX_VALUE)
+                        .addComponent(comboDoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(36, 36, 36))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(btnGraba, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +136,9 @@ public class Formulario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(txtPrueba, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnGraba, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -163,6 +183,10 @@ public class Formulario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnGrabaActionPerformed
 
+    private void comboDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboDocMouseClicked
+    }//GEN-LAST:event_comboDocMouseClicked
+
+    
     /**
      * @param args the command line arguments
      */
@@ -205,5 +229,6 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtPrueba;
     // End of variables declaration//GEN-END:variables
 }
